@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+
+// define models for database
+
+model User {
+  id Int @id @default(autoincrement())
+  email String
+  name String?
+}
+
+
+model Product {
+  id Int @id @default(autoincrement())
+  title String
+  published Boolean @default(false)
+  cover String?
+  views Int @default(autoincrement())
+  favourited Int @default(autoincrement())
+  animations Animation?
+
+}
+
+
+model Animation {
+  jsonData String
+  productId Int @unique
+  sound String?
+  edits Int @default(autoincrement())
+  previewed Int @default(autoincrement())
+
+  product Product @relation(fields: [productId], references: [id])
+
+}
+
+
+
+
