@@ -4,6 +4,9 @@ import { Product } from "@prisma/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   // fetch all products on page load
   const { data: dataProducts, isLoading: isLoadingProducts } = useQuery<
