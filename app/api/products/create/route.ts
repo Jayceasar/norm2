@@ -23,6 +23,7 @@ export async function POST(req: Request) {
         tags: body.tags,
         price: Number(body.price),
         description: body.description,
+        previewVideo: body.previewVideo,
       },
     });
 

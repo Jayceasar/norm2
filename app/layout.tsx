@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div>{children}</div>
+          <div className=" h-full">{children}</div>
         </Providers>
       </body>
     </html>

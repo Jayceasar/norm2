@@ -36,6 +36,8 @@ model Product {
   width Int?
   height Int?
   duration Int?
+  previewVideo String?
+  randomfield String?
 
 
 }

@@ -21,6 +21,7 @@ interface FormData {
   width: number;
   height: number;
   duration: number;
+  previewVideo: string;
 }
 
 function CreateProduct() {
@@ -28,6 +29,7 @@ function CreateProduct() {
   // Initialize with an empty string
   const [jsonData, setJsonData] = useState<string>(""); // Initialize with an empty string
   const [cover, setCover] = useState<Blob | undefined>(undefined); // Initialize with an empty string
+  const [previewVideo, setPreviewVideo] = useState<Blob | undefined>(undefined); // Initialize with an empty string
 
   const [formData, setFormData] = useState<FormData>({
     title: "",
@@ -37,6 +39,7 @@ function CreateProduct() {
     width: 0,
     height: 0,
     duration: 0,
+    previewVideo: "",
   });
 
   console.log(formData);
@@ -52,14 +55,23 @@ function CreateProduct() {
     },
   });
 
-  async function uploadCoverImage() {
+  async function uploadAssetToFirebase(): Promise<{
+    coverImageURL: string;
+    videoURL: string;
+  }> {
     return new Promise(async (resolve, reject) => {
-      if (cover) {
+      if (cover && previewVideo) {
         const coverImageRef = ref(
           storage,
           `products-images/${formData.title + formData.tags}`
         );
         const coverImageUploadTask = uploadBytesResumable(coverImageRef, cover);
+
+        const videoRef = ref(
+          storage,
+          `products-videos/${formData.title + formData.tags}`
+        );
+        const videoUploadTask = uploadBytesResumable(videoRef, previewVideo);
 
         coverImageUploadTask.on(
           "state_changed",
@@ -67,6 +79,7 @@ function CreateProduct() {
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             // You can provide progress updates here if needed.
+            console.log(progress);
           },
           (error) => {
             console.error("Cover image upload error:", error);
@@ -78,7 +91,33 @@ function CreateProduct() {
                 coverImageUploadTask.snapshot.ref
               );
               console.log("Cover image uploaded:", coverImageURL);
-              resolve(coverImageURL); // Resolve the promise with the image URL.
+
+              videoUploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                  const progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                  // You can provide progress updates here if needed.
+                  console.log(progress);
+                },
+                (error) => {
+                  console.error("Video upload error:", error);
+                  reject(error); // Reject the promise with an error.
+                },
+                async () => {
+                  try {
+                    const videoURL = await getDownloadURL(
+                      videoUploadTask.snapshot.ref
+                    );
+                    console.log("Video uploaded:", videoURL);
+
+                    resolve({ coverImageURL, videoURL }); // Resolve the promise with the image and video URLs.
+                  } catch (error) {
+                    console.error("Error:", error);
+                    reject(error); // Reject the promise with an error.
+                  }
+                }
+              );
             } catch (error) {
               console.error("Error:", error);
               reject(error); // Reject the promise with an error.
@@ -86,7 +125,7 @@ function CreateProduct() {
           }
         );
       } else {
-        reject(new Error("No cover image selected.")); // Reject the promise with an error.
+        reject(new Error("No cover image or video selected.")); // Reject the promise with an error.
       }
     });
   }
@@ -95,12 +134,13 @@ function CreateProduct() {
   const { mutate: createProduct, isLoading: isCreatingProduct } = useMutation({
     mutationFn: async () => {
       // upload coverImage to firebase and set link
-      const coverImageURL = await uploadCoverImage();
+      const { coverImageURL, videoURL } = await uploadAssetToFirebase();
 
       //then update database
       return axios.post("/api/products/create", {
         ...formData,
         cover: coverImageURL,
+        previewVideo: videoURL,
         jsonData,
       });
     },
@@ -218,10 +258,16 @@ function CreateProduct() {
             <input
               key={i}
               required={
-                entry !== "width" && entry !== "height" && entry !== "duration"
+                entry !== "width" &&
+                entry !== "height" &&
+                entry !== "duration" &&
+                entry !== "previewVideo"
               }
               className={`${
-                entry === "width" || entry === "height" || entry === "duration"
+                entry === "width" ||
+                entry === "height" ||
+                entry === "duration" ||
+                entry === "previewVideo"
                   ? "hidden"
                   : ""
               }`}
@@ -239,28 +285,49 @@ function CreateProduct() {
           );
         })}
 
-        <input
-          required
-          type="file"
-          id="fileInput"
-          accept="image/*"
-          onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            // handleFileUpload(event, "image");
-            if (event.target.files && event.target.files.length > 0) {
-              setCover(event.target.files[0]);
-            }
-          }}
-        />
+        <div>
+          <label className=" text-xs">Add cover</label>
+          <input
+            required
+            type="file"
+            id="fileInput"
+            accept="image/*"
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              // handleFileUpload(event, "image");
+              if (event.target.files && event.target.files.length > 0) {
+                setCover(event.target.files[0]);
+              }
+            }}
+          />
+        </div>
+        <div>
+          <label className=" text-xs">Add preview</label>
+          <input
+            required
+            type="file"
+            id="fileInput"
+            accept="video/*"
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              // handleFileUpload(event, "image");
+              if (event.target.files && event.target.files.length > 0) {
+                setPreviewVideo(event.target.files[0]);
+              }
+            }}
+          />
+        </div>
 
-        <input
-          required
-          type="file"
-          id="fileInput"
-          accept=".json"
-          onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            handleFileUpload(event, "json");
-          }}
-        />
+        <div>
+          <label className=" text-xs">Add animation</label>
+          <input
+            required
+            type="file"
+            id="fileInput"
+            accept=".json"
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              handleFileUpload(event, "json");
+            }}
+          />
+        </div>
 
         <button type="submit" className=" p-4 text-white bg-black rounded-xl">
           {isCreatingProduct ? <p>creating...</p> : <p>Create product</p>}

@@ -21,6 +21,8 @@ export default function Home() {
     },
   });
 
+  console.log(dataProducts);
+
   // load animation
   const { mutate: animationData, isLoading: isLoadingAnimation } = useMutation({
     mutationFn: async (id: number) => {
@@ -35,7 +37,7 @@ export default function Home() {
   });
 
   return (
-    <>
+    <section>
       {isLoadingProducts ? (
         <p>Loading...</p>
       ) : (
@@ -63,6 +65,6 @@ export default function Home() {
       )}
 
       {isLoadingAnimation ? <p>Loading...</p> : <div>Found data</div>}
-    </>
+    </section>
   );
 }
