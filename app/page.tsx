@@ -9,9 +9,9 @@ export default function Home() {
   const { data: dataProducts, isLoading: isLoadingProducts } = useQuery<
     Product[]
   >({
-    // queryKey: ["products"],
+    queryKey: ["products"],
     queryFn: async () => {
-      const response = await axios.get("/api/products");
+      const response = await axios.get(`/api/products?_=${Date.now()}`);
       return response.data;
     },
   });
