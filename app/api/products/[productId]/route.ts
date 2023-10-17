@@ -11,7 +11,6 @@ export async function DELETE(req: Request, context: contextProps) {
   try {
     const { params } = context;
     const newId = Number(params.productId);
-    console.log(typeof newId);
 
     await prisma.product.delete({
       where: { id: newId },

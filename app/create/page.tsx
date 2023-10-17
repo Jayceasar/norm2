@@ -11,8 +11,6 @@ function CreateProduct() {
   const [title, setTitle] = useState<string>(""); // Initialize with an empty string
   const [jsonData, setJsonData] = useState<string>(""); // Initialize with an empty string
 
-  console.log(title);
-
   //get all products
   const { data: dataProducts, isLoading: isLoadingProducts } = useQuery<
     Product[]
