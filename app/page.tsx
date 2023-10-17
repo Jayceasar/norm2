@@ -4,6 +4,7 @@ import { Product } from "@prisma/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
@@ -38,7 +39,7 @@ export default function Home() {
       {isLoadingProducts ? (
         <p>Loading...</p>
       ) : (
-        <div className=" grid grid-cols-3 gap-4">
+        <div className=" grid grid-cols-1 md:grid-cols-3 gap-4">
           {dataProducts?.map((product, i) => {
             return (
               <div
@@ -50,7 +51,7 @@ export default function Home() {
               >
                 {product.cover && typeof product.cover === "string" ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img alt="product image" src={product.cover} />
+                  <img alt="product image" src={product.cover} id="gifImage" />
                 ) : (
                   <p>No product image available</p>
                 )}

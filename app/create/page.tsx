@@ -217,8 +217,14 @@ function CreateProduct() {
           return (
             <input
               key={i}
-              required
-              className=" text-neutral-700"
+              required={
+                entry !== "width" && entry !== "height" && entry !== "duration"
+              }
+              className={`${
+                entry === "width" || entry === "height" || entry === "duration"
+                  ? "hidden"
+                  : ""
+              }`}
               type={entry === "price" ? "number" : "text"}
               placeholder={entry}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
