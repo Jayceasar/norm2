@@ -21,6 +21,7 @@
     "axios": "^1.5.1",
     "firebase": "^10.5.0",
     "next": "13.5.4",
+    "next-auth": "^4.23.2",
     "react": "^18",
     "react-dom": "^18",
     "react-player": "^2.13.0"

@@ -15,11 +15,30 @@ datasource db {
 
 // define models for database
 
+
+
 model User {
-  id Int @id @default(autoincrement())
-  email String
-  name String?
+  id            Int   @id @default(autoincrement())
+  name          String?
+  username      String? @unique
+  password      String? 
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  plan          String @default("free")
 }
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+///Animation and product
 
 
 model Product {
