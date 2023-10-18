@@ -1,12 +1,17 @@
+"use client";
+
+// import { signIn, signOut, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-async function Nav() {
-  const session = await getServerSession(authOptions);
-  console.log(session);
+function Nav() {
+  const { data: session } = useSession();
+  // const session = await getServerSession(authOptions);
+  // console.log(session);
+
   function AuthButton() {
     if (session) {
       return (
@@ -34,7 +39,7 @@ async function Nav() {
             backgroundSize: "cover",
           }}
         ></div>
-        {/* <AuthButton /> */}
+        <AuthButton />
       </div>
     </div>
   );
