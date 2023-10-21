@@ -3,21 +3,21 @@ import { NextResponse } from "next/server";
 
 interface contextProps {
   params: {
-    animationId: string;
+    id: string;
   };
 }
 
 export async function GET(req: Request, context: contextProps) {
   try {
     const { params } = context;
-    const newId = Number(params.animationId);
-    console.log(typeof newId);
+    const newId = Number(params.id);
+    console.log(params.id);
 
-    const animation = await prisma.animation.findUnique({
-      where: { productId: newId },
-      include: {
-        product: true, // Include the associated product
-      },
+    const animation = await prisma.product.findUnique({
+      where: { id: newId },
+      // include: {
+      //   product: true, // Include the associated product
+      // },
     });
 
     return NextResponse.json(animation, { status: 200 });

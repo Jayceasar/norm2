@@ -16,14 +16,17 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   const session = await getServerSession();
   return (
     <html lang="en">
       <body className={inter.className}>
         <Providers>
+          {modal}
           <SessionProvider session={session}>
             <div className=" w-screen">
               <Nav />
