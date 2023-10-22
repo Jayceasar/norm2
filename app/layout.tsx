@@ -23,15 +23,15 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession();
   return (
-    <html lang="en">
+    <html lang="en" className=" ">
       <body className={inter.className}>
         <Providers>
-          {modal}
           <SessionProvider session={session}>
-            <div className=" w-screen">
+            {modal}
+            <div className=" w-screen ">
               <Nav />
             </div>
-            <div className=" w-screen h-full text-black dark:text-white">
+            <div className=" w-screen min-h-screen text-black dark:text-white">
               {children}
             </div>
           </SessionProvider>

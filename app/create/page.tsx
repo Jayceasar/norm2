@@ -44,17 +44,6 @@ function CreateProduct() {
 
   console.log(formData);
 
-  //get all products
-  const { data: dataProducts, isLoading: isLoadingProducts } = useQuery<
-    Product[]
-  >({
-    queryKey: ["products"],
-    queryFn: async () => {
-      const response = await axios.get("/api/products");
-      return response.data;
-    },
-  });
-
   async function uploadAssetToFirebase(): Promise<{
     coverImageURL: string;
     videoURL: string;

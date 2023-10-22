@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import GoogleSignInButton from "./GoogleSignInButton";
 import { useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 const FormSchema = z
   .object({
@@ -147,7 +148,14 @@ function SignUpForm() {
       >
         or
       </div>
-      <GoogleSignInButton>Sign up with google</GoogleSignInButton>
+      <GoogleSignInButton>
+        <div className="flex gap-2 items-center">
+          <p className=" text-lg">
+            <FcGoogle />
+          </p>
+          <p>Sign up with Google</p>
+        </div>
+      </GoogleSignInButton>
       <p className="text-center text-sm Otext-gray-600 mt-2">
         If you have an account already, please{" "}
         <Link className=" text-orange-500 hover:underline" href={"/sign-in"}>

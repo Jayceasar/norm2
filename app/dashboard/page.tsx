@@ -9,7 +9,7 @@ async function page() {
     return (
       <div>
         Dashboard
-        <p>Welcome {session?.user.username} </p>
+        <p>Welcome {session?.user.username || session?.user.name} </p>
       </div>
     );
   }

@@ -121,5 +121,25 @@ model Animation {
 }
 
 
+model Project {
+  id Int @id @default(autoincrement())
+  title String?
+  description String?
+  cover String?
+  jsonData String?
+  template Int?
+  sound String?
+  scenes String[]
+  firebaseJSONURL String?
+  owner String?
+  collaborators String[]
+  previewProject String?
+  renderedVideoDownloadLink String?
+}
+
+
+
+
+
 
 

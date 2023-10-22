@@ -19,6 +19,7 @@ import GoogleSignInButton from "./GoogleSignInButton";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import { FcGoogle } from "react-icons/fc";
 
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -121,7 +122,14 @@ function SignInForm() {
       >
         or
       </div>
-      <GoogleSignInButton>Sign in with google</GoogleSignInButton>
+      <GoogleSignInButton>
+        <div className="flex gap-2 items-center">
+          <p className=" text-lg">
+            <FcGoogle />
+          </p>
+          <p>Sign in with Google</p>
+        </div>
+      </GoogleSignInButton>
 
       <p className="text-center text-sm Otext-gray-600 mt-2">
         If you don&apos;t have an account, please{" "}

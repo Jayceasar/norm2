@@ -24,9 +24,7 @@ interface product {
 
 export default function Home() {
   // fetch all products on page load
-  const { data: dataProducts, isLoading: isLoadingProducts } = useQuery<
-    Product[]
-  >({
+  const { data: products, isLoading: isLoadingProducts } = useQuery<Product[]>({
     queryKey: ["products"],
     queryFn: async () => {
       const response = await axios.get(`/api/products?_=${Date.now()}`);
@@ -34,38 +32,53 @@ export default function Home() {
     },
   });
 
+  const preloaderElements = Array.from({ length: 9 });
+
   return (
-    <div className=" ">
-      {/* PRODUCTS SECTION */}
-      <section>
-        {isLoadingProducts ? (
-          <p>Loading...</p>
-        ) : (
-          <div className=" grid grid-cols-1 md:grid-cols-3 gap-4">
-            {dataProducts?.map((product, i) => {
-              return (
-                <Link
-                  href={`/product/${product.id}`}
-                  className=" p-4 border-2 border-black w-fit"
-                  key={i}
-                >
-                  {product.cover && typeof product.cover === "string" ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      alt="product image"
-                      src={product.cover}
-                      id="gifImage"
-                    />
-                  ) : (
-                    <p>No product image available</p>
-                  )}
-                  <p>{product.title}</p>
-                </Link>
-              );
-            })}
-          </div>
-        )}
-      </section>
+    <div className=" p-4 ">
+      {products ? (
+        <section>
+          {isLoadingProducts ? (
+            <p>Loading...</p>
+          ) : (
+            <div className=" grid grid-cols-1 md:grid-cols-3 gap-4">
+              {products?.map((product, i) => {
+                return (
+                  <Link
+                    href={`/product/${product.id}`}
+                    className=" h-fit rounded-xl  w-fit"
+                    key={i}
+                  >
+                    {product.cover && typeof product.cover === "string" ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        alt="product image"
+                        src={product.cover}
+                        id="gifImage"
+                        className=" rounded-2xl"
+                      />
+                    ) : (
+                      <p>No product image available</p>
+                    )}
+                    <p>{product.title}</p>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </section>
+      ) : (
+        <section className=" grid grid-cols-1 md:grid-cols-3 gap-4">
+          {preloaderElements.map((preloader, i) => {
+            return (
+              <div
+                key={i}
+                className=" w-full h-[400px] md:h-[700px] bg-neutral-800 rounded-2xl animate-pulse"
+              ></div>
+            );
+          })}
+        </section>
+      )}
     </div>
   );
 }
