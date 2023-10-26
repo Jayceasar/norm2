@@ -23,7 +23,7 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession();
   return (
-    <html lang="en" className=" ">
+    <html lang="en" className=" bg-neutral-950 text-white ">
       <body className={inter.className}>
         <Providers>
           <SessionProvider session={session}>
@@ -31,7 +31,7 @@ export default async function RootLayout({
             <div className=" w-screen ">
               <Nav />
             </div>
-            <div className=" w-screen min-h-screen text-black dark:text-white">
+            <div className=" w-screen h-full text-black dark:text-white">
               {children}
             </div>
           </SessionProvider>

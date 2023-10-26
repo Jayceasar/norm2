@@ -32,8 +32,16 @@ export async function PATCH(req: Request, context: contextProps) {
     const newId = Number(params.projectId);
 
     // Parse the request body to get the updated data
-    const { title, description, cover, jsonData, template, sound, scenes } =
-      await req.json();
+    const {
+      title,
+      description,
+      cover,
+      jsonData,
+      template,
+      sound,
+      scenes,
+      firebaseJSONURL,
+    } = await req.json();
 
     const updatedProject = await prisma.project.update({
       where: { id: newId },
@@ -44,6 +52,7 @@ export async function PATCH(req: Request, context: contextProps) {
         jsonData, // Update the jsonData
         sound, // Update the sound
         scenes, // Update the scenes
+        firebaseJSONURL,
       },
     });
 

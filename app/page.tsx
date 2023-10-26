@@ -4,6 +4,7 @@ import { Product } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Link from "next/link";
+import Banner from "./components/Banner";
 
 interface product {
   id: number;
@@ -35,13 +36,14 @@ export default function Home() {
   const preloaderElements = Array.from({ length: 9 });
 
   return (
-    <div className=" p-4 ">
+    <div style={{ marginTop: "100px" }} className=" p-4 ">
+      <Banner />
       {products ? (
         <section>
           {isLoadingProducts ? (
             <p>Loading...</p>
           ) : (
-            <div className=" grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className=" grid grid-cols-1 md:grid-cols-4 gap-4">
               {products?.map((product, i) => {
                 return (
                   <Link

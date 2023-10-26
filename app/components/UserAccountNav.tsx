@@ -1,14 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 const UserAccountNav = () => {
-  return (
-    <Button className=" text-xs" onClick={() => signOut()}>
-      Sign out
-    </Button>
-  );
+  const { data: session } = useSession();
+
+  return <Link href="/dashboard">{session?.user?.name}</Link>;
 };
 
 export default UserAccountNav;

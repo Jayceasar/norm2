@@ -1,0 +1,133 @@
+h2 {
+  font-size: small;
+  color: #707070;
+}
+
+main {
+  position: fixed;
+  padding-top: 60px;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  color: white;
+}
+
+.container {
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.top-dashboard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  background-color: rgb(15, 15, 15);
+  border-radius: 9999px;
+}
+
+.top-dashboard span {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.top-dashboard span div {
+  padding: 0.5rem;
+  background-color: #000000;
+  border-radius: 0.5rem;
+}
+
+.edit-area-container {
+  display: flex;
+  gap: 1rem;
+  height: 94%;
+}
+
+.preview-container {
+  position: relative;
+  padding: 2rem;
+  background-color: rgb(29, 29, 29);
+  width: 100%;
+  background-image: radial-gradient(#323232 1px, transparent 1px);
+  background-size: 20px 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  transition: all;
+  overflow: auto;
+}
+
+.lottie-parent {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  transition: all;
+}
+
+.play-pause-music {
+  z-index: 2000;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: small;
+  color: black;
+}
+
+.sidebar-container {
+  width: 600px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.sidebar-container span {
+  background-color: rgb(37, 37, 37);
+  border-radius: 20px;
+  padding: 1rem;
+}
+
+.selected-object-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.image-label {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.image-label img {
+  height: 100%;
+}
+
+.download-button:hover {
+  background-color: #ff5c00;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+  .sidebar-container {
+    display: none;
+  }
+  .preview-container {
+    height: fit-content;
+  }
+  .play-pause-music {
+    display: none;
+  }
+}

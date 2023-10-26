@@ -131,6 +131,7 @@ function CreateProduct() {
         cover: coverImageURL,
         previewVideo: videoURL,
         jsonData,
+        sound: videoURL,
       });
     },
     onError: (error) => {

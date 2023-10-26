@@ -31,7 +31,7 @@ function ModalDetailPage(context: contextProps) {
 
   //fetch product
   const { data: product, isLoading: isLoadingProducts } = useQuery({
-    queryKey: ["product"],
+    queryKey: ["product", params.id],
     queryFn: async () => {
       const response = await axios.get(`/api/product/${newId}`);
       return response.data;
@@ -70,7 +70,7 @@ function ModalDetailPage(context: contextProps) {
 
   console.log(product);
   return (
-    <div className=" fixed min-h-screen h-full w-screen flex flex-col items-center justify-center bg-black bg-opacity-70 p-4 gap-3">
+    <div className=" text-black fixed min-h-screen h-full w-screen flex flex-col items-center justify-center bg-black bg-opacity-70 p-4 gap-3">
       <div className=" w-full max-w-[1400px] flex justify-end">
         <Button
           className=" rounded-full"
@@ -82,7 +82,7 @@ function ModalDetailPage(context: contextProps) {
         </Button>
       </div>
       <div className="  flex flex-col md:flex-row gap-2 mb-20 md:mb-0 bg-white w-full max-w-[1400px] h-full max-h-[80%] md:max-h-[60%] rounded-xl overflow-hidden transition-all ">
-        <div className=" relative w-full md:w-[50%] h-full bg-lime-300 overflow-hidden">
+        <div className=" relative w-full md:w-[50%] h-full bg-black overflow-hidden">
           <ReactPlayer
             loop
             playing={isplaying}
