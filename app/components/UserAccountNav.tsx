@@ -3,12 +3,32 @@
 import { Button } from "@/components/ui/button";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+interface Session {
+  user: {
+    name?: string;
+    username: string;
+    // Add other properties as needed
+  };
+  // Add other properties as needed
+}
 
 const UserAccountNav = () => {
   const { data: session } = useSession();
-  const displayLetter = session?.user?.name[0];
+  const [displayLetter, setDisplayLetter] = useState<string>("");
+  // const  = session?.user?.name[0];
 
   console.log(session?.user);
+
+  useEffect(() => {
+    if (session?.user?.name !== "" || session?.user?.username !== "") {
+      if (session && session.user && session.user.name) {
+        const firstLetter = session.user.name[0];
+        setDisplayLetter(firstLetter);
+      }
+    }
+  }, [session]);
 
   return (
     <div className=" flex gap-2">
