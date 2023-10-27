@@ -11,7 +11,6 @@ import Image from "next/image";
 async function Nav() {
   const session = await getServerSession(authOptions);
   const dashboardLinks = [
-    { name: "Dashboard", link: `/dashboard` },
     { name: "Projects", link: `/projects` },
     { name: "Bucket", link: `/bucket` },
     { name: "Teams", link: `/team` },
@@ -27,7 +26,7 @@ async function Nav() {
           <Image alt="norm logo" src={logo} />
         </Link>
 
-        <div className=" hidden md:flex gap-16 h-full items-center ">
+        <div className=" hidden md:flex gap-16 h-full items-center justify-center ">
           {dashboardLinks.map((nav, i) => {
             return (
               <Link key={i} href={nav.link} className=" text-sm text-end">

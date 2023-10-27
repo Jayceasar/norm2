@@ -36,14 +36,14 @@ export default function Home() {
   const preloaderElements = Array.from({ length: 9 });
 
   return (
-    <div style={{ marginTop: "100px" }} className=" p-4 ">
+    <div style={{ marginTop: "100px" }} className=" px-2 md:px-10 ">
       <Banner />
       {products ? (
         <section>
           {isLoadingProducts ? (
             <p>Loading...</p>
           ) : (
-            <div className=" grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className=" grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8">
               {products?.map((product, i) => {
                 return (
                   <Link
