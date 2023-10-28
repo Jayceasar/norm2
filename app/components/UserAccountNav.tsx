@@ -26,15 +26,18 @@ const UserAccountNav = () => {
       if (session && session.user && session.user.name) {
         const firstLetter = session.user.name[0];
         setDisplayLetter(firstLetter);
+      } else if (session && session.user && session.user.email) {
+        const firstLetter = session.user.email[0];
+        setDisplayLetter(firstLetter);
       }
     }
   }, [session]);
 
   return (
-    <div className=" flex gap-2">
-      <div className=" px-6 p-2 border border-white text-white rounded-full">
+    <div className=" relative flex gap-2">
+      <button className=" hidden md:flex items-center justify-center text-[10px] md:text-xs  py-0 md:py-1 px-6 border border-neutral-500 text-white rounded-full">
         Go pro
-      </div>
+      </button>
       <Link href="/dashboard">
         {session?.user?.image ? (
           // eslint-disable-next-line @next/next/no-img-element

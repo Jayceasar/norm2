@@ -70,12 +70,12 @@ export default function Home() {
           )}
         </section>
       ) : (
-        <section className=" grid grid-cols-1 md:grid-cols-3 gap-4">
+        <section className=" grid grid-cols-2 md:grid-cols-5 gap-4">
           {preloaderElements.map((preloader, i) => {
             return (
               <div
                 key={i}
-                className=" w-full h-[400px] md:h-[700px] bg-neutral-800 rounded-2xl animate-pulse"
+                className=" border border-neutral-700 w-full h-[400px] md:h-[700px] bg-neutral-800 rounded-2xl animate-pulse"
               ></div>
             );
           })}
