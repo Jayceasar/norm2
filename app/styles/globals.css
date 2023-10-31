@@ -95,3 +95,18 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+h1 {
+  color: white;
+  font-size: 6vw;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 14pt;
+}
+
+h6 {
+  font-size: 10pt;
+  color: rgb(55, 55, 55);
+}

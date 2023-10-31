@@ -11,11 +11,11 @@ interface projectProps {
 
 export async function GET(context: projectProps) {
   const { params } = context;
-  const newEmail = Number(params.userProjectsId);
+  console.log(params);
   try {
     const projects = await prisma.project.findMany({
       where: {
-        owner: "test200@gmail.com", // Filter by the email field
+        owner: "juliusiniekong@gmail.com", // Filter by the email field
       },
     });
 

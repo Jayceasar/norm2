@@ -12,7 +12,7 @@ import Image from "next/image";
 async function Nav() {
   const session = await getServerSession(authOptions);
   const dashboardLinks = [
-    { name: "Projects", link: `/projects` },
+    { name: "Dashboard", link: `/dashboard` },
     { name: "Bucket", link: `/bucket` },
     { name: "Teams", link: `/team` },
   ];
@@ -21,7 +21,7 @@ async function Nav() {
     <div className=" flex">
       <section
         style={{ backdropFilter: `blur(50px)` }}
-        className=" fixed top-0 z-[4000000] w-screen px-4 md:px-8 py-3 text-sm flex justify-between gap-4 items-center bg-neutral-700 bg-opacity-10"
+        className=" fixed top-0 z-[4000000] w-screen px-4 md:px-8 py-1 md:py-3 text-sm flex justify-between gap-4 items-center bg-neutral-700 bg-opacity-10"
       >
         <div className=" flex gap-10">
           <Link

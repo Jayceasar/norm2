@@ -56,7 +56,7 @@ function ModalDetailPage(context: contextProps) {
 
       // Create a hidden <a> button
       const link = document.createElement("a");
-      link.href = `/projects/edit/${data.data.product.id}`;
+      link.href = `/dashboard/projects/edit/${data.data.product.id}`;
       link.textContent = "Go to New Page"; // Button text
       link.style.display = "none"; // Hide the button
 
@@ -68,9 +68,8 @@ function ModalDetailPage(context: contextProps) {
     },
   });
 
-  console.log(product);
   return (
-    <div className=" text-black fixed min-h-screen h-full w-screen flex flex-col items-center justify-center bg-black bg-opacity-70 p-4 gap-3">
+    <div className=" z-[40000] text-black fixed min-h-screen h-full w-screen flex flex-col items-center justify-center bg-black bg-opacity-70 p-4 gap-3">
       <div className=" w-full max-w-[1400px] flex justify-end">
         <Button
           className=" rounded-full"

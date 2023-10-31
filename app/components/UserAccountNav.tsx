@@ -19,8 +19,6 @@ const UserAccountNav = () => {
   const [displayLetter, setDisplayLetter] = useState<string>("");
   // const  = session?.user?.name[0];
 
-  console.log(session?.user);
-
   useEffect(() => {
     if (session?.user?.name !== "" || session?.user?.username !== "") {
       if (session && session.user && session.user.name) {
@@ -35,15 +33,18 @@ const UserAccountNav = () => {
 
   return (
     <div className=" relative flex gap-2">
-      <button className=" hidden md:flex items-center justify-center text-[10px] md:text-xs  py-0 md:py-1 px-6 border border-neutral-500 text-white rounded-full">
+      <Link
+        href={"/pricing"}
+        className=" hidden md:flex items-center justify-center text-[10px] md:text-xs  py-0 md:py-1 px-6 border border-neutral-500 hover:bg-[#ff7d26] hover:px-9 text-white rounded-full transition-all"
+      >
         Go pro
-      </button>
+      </Link>
       <Link href="/dashboard">
         {session?.user?.image ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <div className="h-10 w-10 aspect-square rounded-full overflow-hidden">
+          <div className=" w-8 md:w-10 aspect-square rounded-full border border-neutral-500 overflow-hidden transition-all">
             <div
-              className="w-full h-full"
+              className="w-full h-full "
               style={{
                 backgroundImage: `url(${session?.user?.image})`,
                 backgroundPosition: "center",
