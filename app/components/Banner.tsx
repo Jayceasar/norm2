@@ -7,7 +7,7 @@ function Banner() {
       <p className=" text-4xl md:text-8xl font-semibold transition-all">
         Professional
         <br />
-        Videos made easy.
+        Videos made easy!
       </p>
       <p className=" text-neutral-500">
         Select a video that looks superb for your use case. Select it, make it
