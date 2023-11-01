@@ -6,7 +6,6 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    // console.log(body);
 
     // Add validation for the request body
     if (!body.title || !body.price) {
@@ -47,19 +46,3 @@ export async function POST(req: Request) {
     );
   }
 }
-
-// ...
-
-// Ensure proper error handling in your React component
-// It appears that you have some error handling in place for axios requests
-
-// ...
-
-// Debugging:
-// 1. Check your server logs for more detailed error information.
-// 2. Review your server-side code to ensure it's handling requests properly.
-// 3. Check Prisma configuration, database connectivity, and permissions.
-// 4. Implement proper request validation and error handling on the client side.
-// 5. Test the route manually with different inputs to identify the problem.
-
-// If the error persists, further debugging and inspection of the server-side code will be necessary to determine the specific issue.
