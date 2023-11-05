@@ -28,10 +28,14 @@ async function Nav() {
             className=" w-20 text-2xl md:text-3xl font-bold   h-full flex justify-start items-center transition-all "
             href="/"
           >
-            <Image className=" hidden md:flex" alt="norm logo" src={logo} />
             <Image
-              className=" text-white  w-10 md:hidden flex"
-              alt="norm icon"
+              className=" hidden md:flex invert dark:invert-0"
+              alt="norm full logo"
+              src={logo}
+            />
+            <Image
+              className=" text-white   w-10 md:hidden flex invert dark:invert-0"
+              alt="norm icon only"
               src={logoIcon}
             />
           </Link>

@@ -1,15 +1,20 @@
 import prisma from "@/prisma/client";
 import { NextResponse } from "next/server";
+import { format } from "date-fns";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     console.log(body.owner, body.template);
 
+    const currentTimestamp = new Date(); // Get the current timestamp
+
     const product = await prisma.project.create({
       data: {
         owner: body.owner,
         template: body.template,
+        cover: body.cover,
+        title: "untitled",
       },
     });
 

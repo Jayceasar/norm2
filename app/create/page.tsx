@@ -212,30 +212,7 @@ function CreateProduct() {
   }
 
   return (
-    <div className=" flex gap-4">
-      {/* <>
-        {isLoadingProducts ? (
-          <p>Loading...</p>
-        ) : (
-          <div>
-            {dataProducts?.map((product, i) => {
-              return (
-                <div className=" flex gap-2" key={i}>
-                  <p>{product.title}</p>
-                  <button
-                    onClick={() => {
-                      deleteProduct(product.id);
-                    }}
-                  >
-                    x
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </> */}
-
+    <div className=" flex gap-4 mt-20">
       <form
         className=" flex flex-col gap-4 p-4 border-2 border-black rounded-xl"
         onSubmit={(e) => {

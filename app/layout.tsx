@@ -6,6 +6,7 @@ import SessionProvider from "./components/SessionProvider";
 import { getServerSession } from "next-auth";
 import Nav from "./components/Nav";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "./components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,18 +24,25 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession();
   return (
-    <html lang="en" className=" bg-neutral-950 text-white ">
+    <html lang="en" className="  text-black dark:text-white ">
       <body className={inter.className}>
         <Providers>
-          <SessionProvider session={session}>
-            {modal}
-            <div className=" w-screen ">
-              <Nav />
-            </div>
-            <div className=" w-screen h-full text-black dark:text-white">
-              {children}
-            </div>
-          </SessionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <SessionProvider session={session}>
+              {modal}
+              <div className=" w-screen ">
+                <Nav />
+              </div>
+              <div className=" w-screen h-full text-black dark:text-white">
+                {children}
+              </div>
+            </SessionProvider>
+          </ThemeProvider>
         </Providers>
         <Toaster />
       </body>

@@ -108,7 +108,7 @@ function Products() {
   const preloaderElements = Array.from({ length: 9 });
   return (
     <div>
-      {products ? (
+      {products && (
         <section>
           {isLoadingProducts ? (
             <p>Loading...</p>
@@ -129,7 +129,7 @@ function Products() {
                           className={` ${
                             visible
                               ? " bg-transparent"
-                              : "bg-neutral-800 border-neutral-700 p-4"
+                              : "bg-neutral-200 dark:bg-neutral-800 border-neutral-700 p-4"
                           } min-h-[200px]   text-white h-fit rounded-2xl  w-full transition-all`}
                           key={i}
                         >
@@ -139,7 +139,7 @@ function Products() {
                                 alt="product image"
                                 src={product.cover}
                                 id="gifImage"
-                                className=" relative w-full bg-neutral-800 rounded-lg md:rounded-2xl transition-all"
+                                className=" relative w-full bg-neutral-200 dark:bg-neutral-800 rounded-lg md:rounded-2xl transition-all"
                                 onLoad={() => {
                                   setVisible(true);
                                 }}
@@ -155,8 +155,8 @@ function Products() {
                               </div>
                             </div>
                           )}
-                          <span className=" flex flex-col gap-1 py-1 md:py-4">
-                            <p className=" text-sm text-neutral-300">
+                          <span className=" flex flex-col gap-1 md:py-4">
+                            <p className=" text-sm text-black dark:text-neutral-300">
                               {product.title}
                             </p>
                             <p className=" text-xs text-neutral-400">
@@ -171,23 +171,6 @@ function Products() {
               })}
             </div>
           )}
-        </section>
-      ) : (
-        <section
-          style={{
-            gridTemplateColumns: `repeat(${numberOfColumns}, minmax(0, 1fr))`,
-          }}
-          className=" grid gap-4"
-        >
-          {numberOfColumns !== 0 &&
-            preloaderElements.map((preloader, i) => {
-              return (
-                <div
-                  key={i}
-                  className=" border border-neutral-700 w-full h-[400px] md:h-[700px] bg-neutral-800 rounded-2xl animate-pulse"
-                ></div>
-              );
-            })}
         </section>
       )}
     </div>

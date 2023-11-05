@@ -125,7 +125,11 @@ model Project {
   collaborators String[]
   previewProject String?
   renderedVideoDownloadLink String?
+  createdAt DateTime @default(now()) // Add a createdAt field with the current timestamp
+  
 }
+
+
 
 
 

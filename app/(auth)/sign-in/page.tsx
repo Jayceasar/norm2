@@ -5,7 +5,7 @@ import React from "react";
 
 function page() {
   return (
-    <div className=" w-[400px] border border-black dark:border-white  p-6 rounded-xl">
+    <div className="fixed top-0">
       <SignInForm />
     </div>
   );

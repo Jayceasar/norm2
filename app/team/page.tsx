@@ -4,8 +4,8 @@ import React, { useEffect } from "react";
 
 function page() {
   return (
-    <div className=" flex justify-center p-4">
-      <section className=" w-full max-w-[1700px] px-10 mt-20 text-white flex flex-col gap-4 border bottom-2 border-orange-400 py-16 bg-black rounded-3xl">
+    <div className=" flex justify-center p-4 min-h-screen">
+      <section className=" w-full h-fit max-w-[1700px] px-10 mt-20 text-white flex flex-col gap-4 border bottom-2 border-orange-400 py-16 bg-black rounded-3xl">
         <div className="  font-bold text-3xl md:text-5xl transition-all">
           Teams
         </div>

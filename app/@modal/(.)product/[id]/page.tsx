@@ -45,6 +45,7 @@ function ModalDetailPage(context: contextProps) {
       return axios.post("/api/projects/create", {
         owner: session?.user.email,
         template: product?.id,
+        cover: product?.cover,
         title: "untitled",
       });
     },
@@ -69,7 +70,7 @@ function ModalDetailPage(context: contextProps) {
   });
 
   return (
-    <div className=" z-[40000] text-black fixed min-h-screen h-full w-screen flex flex-col items-center justify-center bg-black bg-opacity-70 p-4 gap-3">
+    <div className=" z-[800000] text-black fixed min-h-screen h-full w-screen flex flex-col items-center justify-center bg-black bg-opacity-70 p-4 gap-3">
       <div className=" w-full max-w-[1400px] flex justify-end">
         <Button
           className=" rounded-full"
@@ -80,18 +81,22 @@ function ModalDetailPage(context: contextProps) {
           x
         </Button>
       </div>
-      <div className="  flex flex-col md:flex-row gap-2 mb-20 md:mb-0 bg-white w-full max-w-[1400px] h-full max-h-[80%] md:max-h-[60%] rounded-xl overflow-hidden transition-all ">
-        <div className=" relative w-full md:w-[50%] h-full bg-black overflow-hidden">
+      <div className=" grid grid-cols-1 md:grid-cols-2 gap-2 mb-20 md:mb-0 bg-white w-full max-w-[1400px] h-full max-h-[80%] md:max-h-[60%] rounded-xl overflow-hidden transition-all ">
+        {/* <div className=" flex w-full h-full justify-center items-center">
           <ReactPlayer
             loop
             playing={isplaying}
             ref={player}
-            className=" absolute top-0"
             id="preview"
             url={product?.previewVideo}
+            width="100%"
             height="100%"
           ></ReactPlayer>
-        </div>
+        </div> */}
+        <iframe
+          src={product?.previewVideo}
+          className=" w-full h-full bg-black"
+        />
 
         <span className=" p-4 flex flex-col gap-3 justify-between">
           <span className=" details">
@@ -104,7 +109,7 @@ function ModalDetailPage(context: contextProps) {
               <p>{product?.favourited} people love this</p>
             </div>
             <div className=" flex gap-2 items-center">
-              <div
+              {/* <div
                 className={` ${
                   isplaying ? " bg-neutral-300" : "bg-orange-500 text-white"
                 } flex  p-2 rounded-full transition-all`}
@@ -119,7 +124,7 @@ function ModalDetailPage(context: contextProps) {
                 ) : (
                   <LucidePause />
                 )}
-              </div>
+              </div> */}
               <LucideHeart />
               <LucideBookmark />
             </div>
@@ -128,7 +133,7 @@ function ModalDetailPage(context: contextProps) {
                 onClick={() => {
                   createProject();
                 }}
-                className=" w-full  py-4"
+                className=" w-full bg-black text-white hover:bg-orange-500  py-4"
               >
                 Edit template
               </Button>

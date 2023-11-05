@@ -4,6 +4,9 @@
 
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
 
@@ -72,32 +75,7 @@
   }
 }
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-} */
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
 h1 {
-  color: white;
   font-size: 6vw;
   font-weight: 500;
 }
@@ -108,5 +86,4 @@ h3 {
 
 h6 {
   font-size: 10pt;
-  color: rgb(55, 55, 55);
 }

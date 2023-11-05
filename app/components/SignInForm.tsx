@@ -21,6 +21,8 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { FcGoogle } from "react-icons/fc";
 
+import Image from "next/image";
+
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
   password: z
@@ -66,78 +68,100 @@ function SignInForm() {
   };
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault(); // Prevent the default form submission behavior
-          form.handleSubmit(onSubmit)(e); // Continue with your form submission logic
-        }}
-        className="w-full"
-      >
-        <div className=" space-y-6">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="youremail@example.com" {...field} />
-                </FormControl>
+    <section className=" w-screen h-[99vh] grid grid-cols-1 md:grid-cols-2 ">
+      <span className=" w-full h-full flex items-center justify-center">
+        <div className=" w-[400px]  ">
+          <Form {...form}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault(); // Prevent the default form submission behavior
+                form.handleSubmit(onSubmit)(e); // Continue with your form submission logic
+              }}
+              className="w-full "
+            >
+              <div className=" space-y-6 ">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          className=" bg-neutral-700 autofill:bg-neutral-700"
+                          placeholder="youremail@example.com"
+                          {...field}
+                        />
+                      </FormControl>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="Enter password"
-                    {...field}
-                  />
-                </FormControl>
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="password"
+                          placeholder="Enter password"
+                          {...field}
+                        />
+                      </FormControl>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-        <Button className=" w-full mt-6" type="submit">
-          Sign In
-        </Button>
-      </form>
+              <Button className=" w-full mt-6 " type="submit">
+                Sign In
+              </Button>
+            </form>
 
-      <div
-        className="mx-auto my-4 flex w-full items-center justify-evenly
+            <div
+              className="mx-auto my-4 flex w-full items-center justify-evenly
         before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400
         after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400"
-      >
-        or
-      </div>
-      <GoogleSignInButton>
-        <div className="flex gap-2 items-center">
-          <p className=" text-lg">
-            <FcGoogle />
-          </p>
-          <p>Sign in with Google</p>
-        </div>
-      </GoogleSignInButton>
+            >
+              or
+            </div>
+            <GoogleSignInButton>
+              <div className="flex gap-2 items-center">
+                <p className=" text-lg">
+                  <FcGoogle />
+                </p>
+                <p>Sign in with Google</p>
+              </div>
+            </GoogleSignInButton>
 
-      <p className="text-center text-sm Otext-gray-600 mt-2">
-        If you don&apos;t have an account, please{" "}
-        <Link className=" text-orange-500 hover:underline" href={"/sign-up"}>
-          Sign up
-        </Link>
-      </p>
-    </Form>
+            <p className="text-center text-sm Otext-gray-600 mt-2">
+              If you don&apos;t have an account, please{" "}
+              <Link
+                className=" text-orange-500 hover:underline"
+                href={"/sign-up"}
+              >
+                Sign up
+              </Link>
+            </p>
+          </Form>
+        </div>
+      </span>
+
+      <div
+        className=" hidden md:flex w-full h-full  p-20 bg-neutral-900"
+        style={{
+          backgroundImage: `url("https://dr.savee-cdn.com/things/6/4/62ba56a34464bdf0e00a0e.webp")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></div>
+    </section>
   );
 }
 

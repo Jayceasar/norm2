@@ -61,3 +61,16 @@ export async function PATCH(req: Request, context: contextProps) {
     return NextResponse.json(error, { status: 500 });
   }
 }
+
+export async function DELETE(request: Request, context: contextProps) {
+  try {
+    const { params } = context;
+    const newId = Number(params.projectId);
+    await prisma.project.delete({
+      where: { id: newId },
+    });
+    return new Response(null, { status: 204 });
+  } catch (error) {
+    console.log(error);
+  }
+}
